@@ -78,3 +78,11 @@ fieldset:nth-child(3)::before {
 fieldset:nth-child(4)::before {
   content: 'Update Points: ';
 }
+
+h1:hover::after {
+  font-size: 2rem;
+  content: ':RESET SCORES';
+  font-family: 'Times New Roman', Times, serif;
+  color: red;
+  cursor: pointer;
+}

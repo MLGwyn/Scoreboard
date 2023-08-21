@@ -6,6 +6,7 @@ const teamScores = document.querySelectorAll('h3')
 const inputBoxes = document.querySelectorAll('input')
 const teamNames = document.querySelectorAll('h2')
 teamNames.forEach((name) => name.innerText)
+const reset = document.querySelector('h1')
 
 function clickPoint(event: MouseEvent) {
   const pointClicked = event.target
@@ -13,7 +14,9 @@ function clickPoint(event: MouseEvent) {
   if (pointClicked instanceof HTMLElement) {
     if (pointClicked.parentElement?.parentElement?.className == 'team1') {
       teamNumber = 0
-    } else {
+    } else if (
+      pointClicked.parentElement?.parentElement?.className == 'team2'
+    ) {
       teamNumber = 1
     }
     if (
@@ -32,12 +35,23 @@ function clickPoint(event: MouseEvent) {
   if (teamScores[teamNumber] instanceof HTMLHeadingElement) {
     teamScores[teamNumber].textContent = `${teamScoreCounter[teamNumber]}`
   }
+  if (pointClicked instanceof HTMLHeadingElement) {
+    pointClicked.classList.contains('h1')
+    window.alert('resetting scores')
+    {
+      teamScoreCounter[0] = 0
+      teamScores[0].textContent = `${teamScoreCounter[0]}`
+      teamScoreCounter[1] = 0
+      teamScores[1].textContent = `${teamScoreCounter[1]}`
+    }
+  }
   if (teamScoreCounter[teamNumber] == 21) {
     window.alert(`Congratulations ${teamNames[teamNumber].innerText} Won!`)
   }
 }
-points.forEach((point) => point.addEventListener('click', clickPoint))
 
+points.forEach((point) => point.addEventListener('click', clickPoint))
+reset?.addEventListener('click', clickPoint)
 function updateTeamName(event: Event) {
   const updatedName = event.target
 
